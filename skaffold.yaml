@@ -2,7 +2,7 @@ apiVersion: skaffold/v1beta2
 kind: Config
 build:
   artifacts:
-  - image: joostvdg/jx-go-rhos311-1
+  - image: caladreas/jx-go-rhos311-1
     context: .
     docker: {}
   tagPolicy:
