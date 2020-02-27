@@ -74,12 +74,12 @@ readinessProbe:
 # custom ingress annotations on this service
 ingress:
   annotations:
-#      kubernetes.io/ingress.class: nginx
+     kubernetes.io/ingress.class: nginx
 
 # values we use from the `jx-requirements.yml` file if we are using helmfile and helm 3
 jxRequirements:
   ingress:
-    domain: ""
+    domain: "openshift.kearos.net"
     externalDNS: false
     namespaceSubDomain: -jx.
     tls:
@@ -92,4 +92,4 @@ jxRequirements:
 
     # shared ingress annotations on all services
     annotations:
-    #  kubernetes.io/ingress.class: nginx
+     kubernetes.io/ingress.class: nginx
