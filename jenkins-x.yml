@@ -2,7 +2,7 @@ buildPack: go
 pipelineConfig:
   env:
   -  name: GOOGLE_APPLICATION_CREDENTIALS
-     value: /secrets/.dockerconfigjson
+     value: /secrets/kaniko/kaniko-secret.json
   pipelines:
     overrides:
     - pipeline: release
@@ -14,8 +14,8 @@ pipelineConfig:
             defaultMode: 420
             secretName: kaniko-secret
             items:
-                - key: kaniko-secret
-                  path: .dockerconfigjson
+                - key: .dockerconfigjson
+                  path: kaniko/kaniko-secret.json
       containerOptions:
         volumeMounts:
           - mountPath: /secrets
