@@ -19,3 +19,4 @@ pipelineConfig:
             - --destination=docker.io/caladreas/jx-go-rhos311-1:${inputs.params.version}
             - --cache-repo=docker.io/todo/cache
             - --skip-tls-verify-registry=docker.io
+            - --verbosity=debug
