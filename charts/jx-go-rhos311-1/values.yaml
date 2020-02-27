@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: docker.io/caladreas/jx-go-rhos311-1
-  tag: dev
+  repository: docker.io/joostvdg/jx-go-rhos311-1
+  tag: 0.0.21
   pullPolicy: IfNotPresent
 
 # define environment variables here as a map of key: value
