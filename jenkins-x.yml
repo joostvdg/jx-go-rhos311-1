@@ -4,6 +4,10 @@ pipelineConfig:
   -  name: DOCKER_CONFIG
      value: /root/.docker/
   pipelines:
+    release:
+      build:
+        preSteps:
+        - command: env
     overrides:
     - pipeline: release
       stage: build 
