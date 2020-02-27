@@ -1,1 +1,18 @@
 buildPack: go
+pipelineConfig:
+  pipelines:
+    overrides:
+    - pipeline: release
+      stage: build 
+      name: container-build
+      steps:
+        - command: /kaniko/executor
+          name: container-build
+          args:
+            - --cache=true
+            - --cache-dir=/workspace
+            - --context=/workspace/source
+            - --dockerfile=/workspace/source/Dockerfile
+            - --destination=docker.io/caladreas/jx-go-rhos311-1:${inputs.params.version}
+            - --cache-repo=docker.io/todo/cache
+            - --skip-tls-verify-registry=docker.io
