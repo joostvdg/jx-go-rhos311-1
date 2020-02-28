@@ -10,6 +10,35 @@ pipelineConfig:
         preSteps:
         - command: env
     overrides:
+    - pipeline: pullRequest
+      stage: build 
+      name: container-build
+      volumes:
+        - name: kaniko-secret
+          secret:
+            defaultMode: 420
+            secretName: kaniko-secret
+            items:
+                - key: .dockerconfigjson
+                  path: config.json
+      containerOptions:
+        volumeMounts:
+          - mountPath: /root/.docker
+            name: kaniko-secret
+      steps:
+        - name: container-build
+          dir: /workspace/source
+          image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
+          command: /kaniko/executor
+          args:
+            - --cache=true
+            - --cache-dir=/workspace
+            - --context=/workspace/source
+            - --dockerfile=/workspace/source/Dockerfile
+            - --destination=docker.io/caladreas/jx-go-rhos311-1:${inputs.params.version}
+            - --cache-repo=docker.io/todo/cache
+            - --skip-tls-verify-registry=docker.io
+            - --verbosity=debug
     - pipeline: release
       stage: build 
       name: container-build
